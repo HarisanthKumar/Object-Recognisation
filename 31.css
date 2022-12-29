@@ -1,0 +1,110 @@
+body {
+    margin: 0px;
+    background-color: lawngreen;
+}
+
+#center {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    width: 100vw;
+}
+
+#head1 {
+    background-color: white;
+    border: 3px solid black;
+    font-weight: bold;
+    font-size: 33px;
+    padding: 5px;
+}
+
+#head2 {
+    font-weight: bold;
+    font-style: italic;
+    font-size: 25px;
+}
+
+h1,
+label, button {
+    text-align: center;
+    margin: 15px;
+    font-family: sans-serif;
+}
+#content{
+    width: 50%;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(255, 121, 143);
+    border: 3px solid rgb(255, 74, 104);
+    min-width: fit-content;
+    margin: 15px;
+}
+#content label{
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+}
+hr{
+    height: 2px;
+    width: 100%;
+    background-color: pink;
+    border-width: 0px;
+}
+button{
+    font-size: 25px;
+    font-weight: bold;
+    padding: 5px;
+    background-color: cyan;
+    border: 3px solid blue;
+    color: blue;
+    margin: 5px;
+}
+#webcam, #snapshot{
+    border: 9px solid green;
+    background-color: white;
+    margin: 15px;
+    width: 45vw !important;
+    height: 30vw !important;
+}
+#snapshot{
+    display: none;
+}
+video{
+    height: 100% !important;
+    width: 100% !important;
+    object-fit: cover;
+}
+#center2{
+    display: none;
+    width: 100%;
+    justify-content: space-around;
+    margin: 5px;
+}
+#center3{
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    border: 3px solid green;
+    background-color: rgb(22, 255, 22);
+    width: fit-content;
+    margin: 15px;
+}
+#center3 label{
+    font-size: 25px;
+    font-family: sans-serif;
+    font-weight: bold;
+    color: darkgreen;
+    font-style: italic;
+}
+canvas, #button1, #button2{
+    display: none;
+}
+img{
+    width: 100%;
+    height: 100%;
+}
+#div{
+    display: flex;
+}

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Object Recognition</title>
+    <link rel="stylesheet" href="../css/31.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.26/webcam.js"></script>
+    <script src="https://unpkg.com/ml5@0.4.3/dist/ml5.min.js"></script>
+</head>
+
+<body>
+    <div id="center">
+        <h1 id="head1">Object Recognition</h1>
+        <h1 id="head2">Object Is Recognised Using Teachable Machine</h1>
+        <br>
+        <div id="content">
+            <hr>
+            <label>Bottle</label>
+            <hr>
+            <label>Keyboard</label>
+            <hr>
+            <label>Mouse</label>
+            <hr>
+            <label>Spoon</label>
+            <hr>
+            <label>Pouch</label>
+            <hr>
+        </div>
+        <div id="center2">
+            <div id="webcam"></div>
+            <div id="snapshot"></div>
+        </div>
+        <div id="div">
+            <button type="button" onclick="cam()">Turn On Camera</button>
+            <button id="button1" type="button" onclick="snapshot()">Take A Picture</button>
+            <button id="button2" type="button" onclick="check()">Check</button>
+        </div>
+        <div id="center3">
+            <label id="result"></label>
+            <label id="accuracy"></label>
+        </div>
+    </div>
+</body>
+<script>
+    var camera = document.querySelector("#webcam");
+    var snap = document.querySelector("#snapshot");
+    var res = document.querySelector("#result");
+    var acc = document.querySelector("#accuracy");
+    var div = document.querySelector("#center3");
+    var started = false;
+    var h = "100";
+    var w = "100";
+
+    function cam() {
+        Webcam.set({
+            width: 350,
+            height: 300,
+            image_format: 'png',
+            png_quality: 90
+        });
+        Webcam.attach(camera);
+        document.querySelector("video").style = "";
+        document.querySelector("#center2").style.display = "flex";
+        document.querySelector("#button1").style.display = "block";
+    };
+
+    function snapshot() {
+        Webcam.snap(function (data_uri) {
+            snap.innerHTML = '<img id="captured_image" src="' + data_uri + '">';
+            console.log(data_uri);
+        });
+        document.querySelector("#button2").style.display = "block";
+        snap.style.display="block";
+    };
+    console.log('ml5 version:', ml5.version);
+    classifier = ml5.imageClassifier('https://teachablemachine.withgoogle.com/models/v58tgIg6f/model.json',
+        modelLoaded);
+
+    function modelLoaded() {
+        console.log('Model Loaded!');
+    };
+
+    function check() {
+        img = document.getElementById('captured_image');
+        classifier.classify(img, gotResult);
+    };
+
+    function gotResult(error, results) {
+        if (error) {
+            console.log(error);
+        } else {
+            div.style.display="flex";
+            console.log(results);
+            res.innerHTML = results[0].label;
+            acc.innerHTML = results[0].confidence.toFixed(3);
+        };
+    };
+</script>
+
+</html>
